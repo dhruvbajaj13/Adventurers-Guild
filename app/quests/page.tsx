@@ -6,61 +6,71 @@ import { Bug, SearchCode, Lock, Bot, Swords, Code, Scroll, Crown, Gem } from "lu
 export default function QuestsPage() {
   const sacredQuests = [
     {
-      title: "The Bug Hunters' Covenant",
+      title: "The Bug Bounty Brigade 🕵️",
       description:
-        "Form elite hunting parties to track down and vanquish the most elusive software demons plaguing the digital realm. Master the ancient arts of debugging and earn the title of Bug Slayer.",
+        "Form elite 'Bounty Brigades' to hunt down and vanquish bugs in open-source projects, campus systems, and specially designed challenges. This isn't just debugging—it's reverse-engineering and strategic problem-solving under pressure with real-world impact.",
       icon: Bug,
       difficulty: "apprentice" as const,
-      reward: "Bug Slayer's Medallion + 500 Guild Points",
+      reward: "Bounty Hunter's Badge + Open Source Contributions",
     },
     {
-      title: "Digital Archaeology Expedition",
+      title: "Digital Archaeology Expeditions 🏛️",
       description:
-        "Venture into the forgotten ruins of legacy codebases, decipher ancient programming languages, and uncover lost algorithms. Restore these digital artifacts to their former glory.",
+        "Journey into computing's golden age by exploring ancient programming languages like Fortran, COBOL, and Assembly. Revive old programs on emulators and understand foundational algorithms that shaped our digital world.",
       icon: SearchCode,
       difficulty: "adept" as const,
-      reward: "Archaeologist's Tome + Ancient Knowledge",
+      reward: "Archaeologist's Codex + Historical Computing Mastery",
     },
     {
-      title: "The Cipher Sanctum Trials",
+      title: "Cipher & Codebreaker Challenge 🔐",
       description:
-        "Enter the mystical Cipher Sanctum where cryptographic puzzles guard ancient secrets. Only those who master the art of code-breaking may claim the treasures within.",
+        "Master the arts of cryptography, steganography, and reverse engineering. Create complex ciphers for others to break, decrypt puzzles hidden in code, images, and audio files, and explore ethical penetration testing.",
       icon: Lock,
       difficulty: "expert" as const,
-      reward: "Codebreaker's Ring + Cryptographic Mastery",
+      reward: "Codebreaker's Seal + Cybersecurity Expertise",
     },
     {
-      title: "Familiar Summoning Rituals",
+      title: "AI Familiar & Companion Crafting 🤖",
       description:
-        "Learn the forbidden arts of AI summoning to create your own digital familiars. These intelligent companions will aid you in future quests and serve as loyal allies.",
+        "Embark on a semester-long quest to develop AI companions, chatbots, or game NPCs with unique personalities and learning capabilities. Watch your digital familiars evolve and grow throughout your journey.",
       icon: Bot,
       difficulty: "master" as const,
-      reward: "AI Familiar + Summoner's Staff",
+      reward: "AI Summoner's Staff + Intelligent Companion",
     },
     {
-      title: "The Grand Campaign Saga",
+      title: "Narrative Driven Hackathons: The Grand Campaign 📜",
       description:
-        "Participate in epic narrative-driven hackathons where guilds compete in legendary campaigns. Forge alliances, battle rival orders, and create solutions that will be sung by bards for generations.",
+        "Join continuous storylines where each hackathon contributes to epic narratives like 'Building the Interdimensional Portal' or 'Defending the Network Citadel.' Success in one mission unlocks resources for the next adventure.",
       icon: Swords,
       difficulty: "expert" as const,
-      reward: "Campaign Hero's Crown + Legendary Status",
+      reward: "Campaign Hero's Crown + Legendary Project Portfolio",
     },
     {
-      title: "The Algorithm Colosseum",
+      title: "The Algorithm Arena ⚔️",
       description:
-        "Enter the grand arena where the greatest minds clash in algorithmic combat. Optimize your code, master data structures, and prove your worth against fellow gladiators of logic.",
+        "Enter the grand colosseum where teams face off in live-coding battles. Solve algorithmic challenges with elegance, efficiency, and real-time problem-solving prowess while spectators cheer your strategic brilliance.",
       icon: Code,
       difficulty: "adept" as const,
-      reward: "Gladiator's Laurel + Performance Mastery",
+      reward: "Arena Champion's Laurel + Algorithmic Mastery",
+    },
+    {
+      title: "Open-Source Cartography 🗺️",
+      description:
+        "Navigate the vast landscape of open-source projects as digital cartographers. Become ambassadors for lesser-known tools, contribute code, improve documentation, and create tutorials for the global tech community.",
+      icon: Scroll,
+      difficulty: "apprentice" as const,
+      reward: "Cartographer's Compass + Open Source Recognition",
     },
   ]
 
   const futureQuests = [
     "The Quantum Mysteries Expedition",
-    "Blockchain Fortress Siege",
+    "Blockchain Fortress Construction",
     "The Cybersecurity Citadel Defense",
     "Neural Network Necromancy",
     "The Cloud Kingdom Conquest",
+    "Virtual Reality Realm Building",
+    "IoT Device Taming Expeditions",
   ]
 
   return (

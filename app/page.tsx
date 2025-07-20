@@ -106,26 +106,35 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-4">
                     <Gem className="h-8 w-8 text-mystical-gold animate-glow" />
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-guild-text font-fantasy">
-                      The Guild's Sacred Mission
+                      Unleashing the Digital Pioneers
                     </h2>
                   </div>
 
                   <div className="space-y-4 text-guild-muted font-mystical leading-relaxed">
                     <p className="text-lg md:text-xl">
-                      In the mystical realm of digital sorcery, we are the{" "}
-                      <span className="text-mystical-gold font-semibold">Adventurers Guild</span> - an ancient order of
-                      code mages, algorithm alchemists, and data druids.
+                      The Adventurers Guild isn't just a club; it's a{" "}
+                      <span className="text-mystical-gold font-semibold">proving ground</span> for the next generation
+                      of digital architects, innovators, and problem-solvers.
                     </p>
 
                     <p className="text-lg">
-                      Our sacred halls echo with the incantations of programming languages, where novice adventurers
-                      ascend through the ranks to become legendary archmages of the digital arts.
+                      In an age where technology defines our world, we believe in empowering students to not just
+                      understand code, but to{" "}
+                      <span className="text-mystical-purple font-semibold">
+                        wield it as a tool for creation, exploration, and impact
+                      </span>
+                      .
                     </p>
 
                     <p className="text-lg">
-                      Join our noble order and embark on epic quests that will forge your skills in the fires of
-                      innovation, transforming mere mortals into{" "}
-                      <span className="text-mystical-purple font-semibold">Digital Legends</span>.
+                      Our motive is simple yet profound: to cultivate a community where every line of code written is a
+                      step into uncharted territory, every bug squashed a dragon slain, and every project completed a{" "}
+                      <span className="text-mystical-emerald font-semibold">new digital realm discovered</span>.
+                    </p>
+
+                    <p className="text-lg font-semibold text-mystical-gold">
+                      We're here to prepare you for a career that's less about a desk job and more about a lifelong
+                      journey of discovery and mastery.
                     </p>
                   </div>
                 </div>
@@ -133,16 +142,16 @@ export default function HomePage() {
                 {/* Guild Stats */}
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-mystical-purple/10 rounded-lg border border-mystical-purple/30">
-                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">50+</div>
-                    <div className="text-sm text-guild-muted font-mystical">Active Mages</div>
+                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">7</div>
+                    <div className="text-sm text-guild-muted font-mystical">Epic Quests</div>
                   </div>
                   <div className="text-center p-4 bg-mystical-gold/10 rounded-lg border border-mystical-gold/30">
-                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">100+</div>
-                    <div className="text-sm text-guild-muted font-mystical">Quests Completed</div>
+                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">∞</div>
+                    <div className="text-sm text-guild-muted font-mystical">Adventures Await</div>
                   </div>
                   <div className="text-center p-4 bg-mystical-emerald/10 rounded-lg border border-mystical-emerald/30">
-                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">5</div>
-                    <div className="text-sm text-guild-muted font-mystical">Legendary Archmages</div>
+                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">1</div>
+                    <div className="text-sm text-guild-muted font-mystical">Digital Future</div>
                   </div>
                 </div>
               </div>

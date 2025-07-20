@@ -52,10 +52,10 @@ export default function JoinUsPage() {
                       <BookOpen className="h-10 w-10" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Arcane Knowledge</h3>
+                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Epic Quest Mastery</h3>
                   <p className="text-guild-muted font-mystical leading-relaxed">
-                    Access to forbidden programming arts, ancient algorithms, and mystical coding techniques passed down
-                    through generations.
+                    Embark on legendary quests from Bug Bounty Brigades to AI Companion Crafting. Each adventure builds
+                    real-world skills while having genuine fun in the process.
                   </p>
                 </div>
               </div>
@@ -69,10 +69,10 @@ export default function JoinUsPage() {
                       <Users className="h-10 w-10" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Brotherhood of Mages</h3>
+                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Digital Pioneer Community</h3>
                   <p className="text-guild-muted font-mystical leading-relaxed">
-                    Join a sacred brotherhood of digital sorcerers, forming lifelong alliances with fellow adventurers
-                    and master enchanters.
+                    Join a brotherhood of digital architects and innovators. Form Bounty Brigades, compete in Algorithm
+                    Arenas, and collaborate on Grand Campaign narratives.
                   </p>
                 </div>
               </div>
@@ -86,10 +86,10 @@ export default function JoinUsPage() {
                       <Sword className="h-10 w-10" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Epic Quests</h3>
+                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Real-World Impact</h3>
                   <p className="text-guild-muted font-mystical leading-relaxed">
-                    Embark on legendary quests that will forge your skills in the fires of challenge and grant you
-                    artifacts of power.
+                    Contribute to open-source projects, fix real bugs in campus systems, and build AI companions that
+                    evolve. Your code makes a difference beyond the classroom.
                   </p>
                 </div>
               </div>
@@ -103,10 +103,10 @@ export default function JoinUsPage() {
                       <Star className="h-10 w-10" />
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Legendary Status</h3>
+                  <h3 className="text-xl font-bold text-guild-text font-fantasy mb-4">Career Transformation</h3>
                   <p className="text-guild-muted font-mystical leading-relaxed">
-                    Rise through the noble ranks and achieve legendary status, with your deeds recorded in the Guild's
-                    eternal chronicles.
+                    Prepare for a career that's less about a desk job and more about a lifelong journey of discovery and
+                    mastery. Become a true digital pioneer.
                   </p>
                 </div>
               </div>
