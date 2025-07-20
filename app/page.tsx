@@ -1,213 +1,232 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { FantasyHeader } from "@/components/fantasy-header"
 import { FantasyFooter } from "@/components/fantasy-footer"
-import { Crown, Sword, Shield, Star, Gem, Scroll } from "lucide-react"
+import { Crown, Scroll, Users, Code, Shield, ArrowDown } from "lucide-react"
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-guild-background">
+    <div className="flex flex-col min-h-[100dvh]">
       <FantasyHeader />
-      <main className="flex-1">
-        {/* Hero Section - Magic Tower Inspired */}
-        <section className="relative w-full py-16 md:py-24 lg:py-32 xl:py-48 bg-gradient-to-br from-obsidian via-mystical-purple/20 to-obsidian overflow-hidden">
-          {/* Mystical background effects */}
-          <div className="absolute inset-0">
-            <div className="absolute top-20 left-10 w-2 h-2 bg-mystical-gold rounded-full animate-float"></div>
-            <div
-              className="absolute top-40 right-20 w-1 h-1 bg-mystical-purple rounded-full animate-float"
-              style={{ animationDelay: "1s" }}
-            ></div>
-            <div
-              className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-mystical-emerald rounded-full animate-float"
-              style={{ animationDelay: "2s" }}
-            ></div>
-            <div
-              className="absolute top-60 right-1/3 w-1 h-1 bg-mystical-silver rounded-full animate-float"
-              style={{ animationDelay: "0.5s" }}
-            ></div>
-          </div>
 
-          {/* Radial gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-radial from-mystical-purple/10 via-transparent to-transparent"></div>
+      {/* Hero Section - Hanwag Style */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Full-screen Background Image */}
+        <div className="absolute inset-0 z-0">
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: `url('/hero-coding-bg.png')`,
+            }}
+          />
+          {/* Subtle overlay for text readability */}
+          <div className="absolute inset-0 bg-black/20"></div>
+        </div>
 
-          <div className="container px-4 md:px-6 relative z-10">
-            <div className="flex flex-col items-center space-y-8 text-center">
-              {/* Guild Emblem */}
-              <div className="relative mb-8">
-                <div className="relative p-8 rounded-full bg-gradient-to-br from-mystical-purple/30 to-mystical-gold/30 border-4 border-mystical-gold animate-glow">
-                  <Shield className="h-20 w-20 text-mystical-gold" />
-                  <Crown className="absolute -top-2 -right-2 h-8 w-8 text-mystical-gold animate-float" />
-                  <Sword className="absolute -bottom-1 -left-1 h-6 w-6 text-mystical-silver" />
-                </div>
-                <div className="absolute inset-0 bg-mystical-gold/20 rounded-full blur-xl animate-pulse"></div>
-              </div>
-
-              <div className="space-y-6">
-                <h1 className="text-4xl font-extrabold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none text-guild-text font-fantasy">
-                  <span className="bg-gradient-to-r from-mystical-gold via-mystical-purple to-mystical-gold bg-clip-text text-transparent">
-                    The Adventurers Guild
-                  </span>
-                </h1>
-
-                <div className="space-y-2">
-                  <p className="text-xl md:text-2xl text-mystical-gold font-mystical">
-                    ⟨ Mercenary Order of Digital Mages ⟩
-                  </p>
-                  <p className="mx-auto max-w-[900px] text-lg md:text-xl text-guild-muted font-mystical leading-relaxed">
-                    "Where Code Becomes Magic, and Programmers Ascend to Archmages"
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-6 sm:flex-row sm:gap-8">
-                <Button
-                  asChild
-                  className="relative px-8 py-4 text-lg bg-gradient-to-r from-mystical-gold to-mystical-gold/80 hover:from-mystical-gold/90 hover:to-mystical-gold text-obsidian font-bold shadow-lg transition-all duration-300 transform hover:scale-105 border-2 border-mystical-gold font-fantasy"
-                >
-                  <Link href="/join-us">
-                    <Crown className="mr-2 h-5 w-5" />
-                    Join the Order
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="relative px-8 py-4 text-lg border-2 border-mystical-purple text-mystical-purple bg-mystical-purple/10 hover:bg-mystical-purple/20 shadow-lg transition-all duration-300 transform hover:scale-105 font-fantasy"
-                >
-                  <Link href="/quests">
-                    <Scroll className="mr-2 h-5 w-5" />
-                    View Quest Board
-                  </Link>
-                </Button>
+        {/* Main Content */}
+        <div className="relative z-10 text-center px-4 md:px-6 max-w-7xl mx-auto">
+          {/* Guild Logo - Top Left */}
+          <div className="absolute top-8 left-8 hidden md:block">
+            <div className="flex items-center gap-3">
+              <Shield className="w-8 h-8 text-red-600" />
+              <div className="text-left">
+                <div className="text-sm font-bold text-white">THE</div>
+                <div className="text-xs text-red-600 font-medium">ADVENTURERS</div>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Guild Manifesto Section */}
-        <section className="w-full py-16 md:py-24 lg:py-32 bg-gradient-to-br from-guild-background via-guild-surface to-guild-background">
-          <div className="container px-4 md:px-6">
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-mystical-purple/20 to-mystical-gold/20 rounded-2xl blur-xl"></div>
-                <Image
-                  src="/placeholder.svg?height=500&width=700"
-                  width={700}
-                  height={500}
-                  alt="The Digital Magic Tower"
-                  className="relative mx-auto aspect-video overflow-hidden rounded-2xl object-cover shadow-2xl border-2 border-mystical-gold/30"
-                />
-              </div>
-
-              <div className="flex flex-col justify-center space-y-8">
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <Gem className="h-8 w-8 text-mystical-gold animate-glow" />
-                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-guild-text font-fantasy">
-                      Unleashing the Digital Pioneers
-                    </h2>
-                  </div>
-
-                  <div className="space-y-4 text-guild-muted font-mystical leading-relaxed">
-                    <p className="text-lg md:text-xl">
-                      The Adventurers Guild isn't just a club; it's a{" "}
-                      <span className="text-mystical-gold font-semibold">proving ground</span> for the next generation
-                      of digital architects, innovators, and problem-solvers.
-                    </p>
-
-                    <p className="text-lg">
-                      In an age where technology defines our world, we believe in empowering students to not just
-                      understand code, but to{" "}
-                      <span className="text-mystical-purple font-semibold">
-                        wield it as a tool for creation, exploration, and impact
-                      </span>
-                      .
-                    </p>
-
-                    <p className="text-lg">
-                      Our motive is simple yet profound: to cultivate a community where every line of code written is a
-                      step into uncharted territory, every bug squashed a dragon slain, and every project completed a{" "}
-                      <span className="text-mystical-emerald font-semibold">new digital realm discovered</span>.
-                    </p>
-
-                    <p className="text-lg font-semibold text-mystical-gold">
-                      We're here to prepare you for a career that's less about a desk job and more about a lifelong
-                      journey of discovery and mastery.
-                    </p>
-                  </div>
+          {/* Anniversary Badge - Top Right */}
+          <div className="absolute top-8 right-8 hidden md:block">
+            <div className="relative">
+              <div className="w-20 h-20 rounded-full border-4 border-red-600 bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-xs font-bold text-red-600">EST</div>
+                  <div className="text-lg font-black text-white">2024</div>
                 </div>
+              </div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
+                <div className="bg-red-600 text-white text-xs px-2 py-1 rounded font-bold">GUILD</div>
+              </div>
+            </div>
+          </div>
 
-                {/* Guild Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-mystical-purple/10 rounded-lg border border-mystical-purple/30">
-                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">7</div>
-                    <div className="text-sm text-guild-muted font-mystical">Epic Quests</div>
-                  </div>
-                  <div className="text-center p-4 bg-mystical-gold/10 rounded-lg border border-mystical-gold/30">
-                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">∞</div>
-                    <div className="text-sm text-guild-muted font-mystical">Adventures Await</div>
-                  </div>
-                  <div className="text-center p-4 bg-mystical-emerald/10 rounded-lg border border-mystical-emerald/30">
-                    <div className="text-2xl font-bold text-mystical-gold font-fantasy">1</div>
-                    <div className="text-sm text-guild-muted font-mystical">Digital Future</div>
-                  </div>
+          {/* Main Title with Texture Effect */}
+          <div className="mb-8">
+            <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-black tracking-tight leading-none mb-4">
+              <span
+                className="block text-transparent bg-clip-text relative"
+                style={{
+                  backgroundImage: `linear-gradient(45deg, #dc2626, #b91c1c, #991b1b)`,
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+                }}
+              >
+                ADVENTURERS
+              </span>
+              <span
+                className="block text-transparent bg-clip-text relative -mt-4"
+                style={{
+                  backgroundImage: `linear-gradient(45deg, #dc2626, #b91c1c, #991b1b)`,
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+                }}
+              >
+                GUILD
+              </span>
+            </h1>
+          </div>
+
+          {/* Subtitle */}
+          <div className="mb-16">
+            <p className="text-2xl md:text-4xl font-bold text-white tracking-wider mb-4">FORGING DIGITAL PIONEERS</p>
+            <div className="w-32 h-1 bg-red-600 mx-auto"></div>
+          </div>
+
+          {/* Circular Timeline Element */}
+          <div className="mb-16 flex justify-center">
+            <div className="relative">
+              <div className="w-32 h-32 rounded-full border-4 border-red-600 bg-white/10 backdrop-blur-sm flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-sm font-bold text-red-600">EST</div>
+                  <div className="text-3xl font-black text-white">2024</div>
+                  <ArrowDown className="w-4 h-4 text-red-600 mx-auto mt-1" />
+                  <div className="text-3xl font-black text-white">∞</div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* Call to Action - Royal Decree */}
-        <section className="relative w-full py-16 md:py-24 lg:py-32 bg-gradient-to-r from-mystical-purple via-mystical-purple/80 to-mystical-purple overflow-hidden">
-          {/* Royal decree background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-mystical-gold/5 via-transparent to-mystical-gold/5"></div>
-
-          <div className="container px-4 md:px-6 relative z-10">
-            <div className="text-center space-y-8">
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <Star className="h-16 w-16 text-mystical-gold animate-glow" />
-                  <div className="absolute inset-0 bg-mystical-gold/30 rounded-full blur-lg animate-pulse"></div>
-                </div>
+          {/* Code Sword Illustration */}
+          <div className="mb-16 flex justify-center">
+            <div className="relative">
+              <div className="text-6xl md:text-8xl text-red-600/30 font-mono transform rotate-45">{"{ }"}</div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-1 h-24 bg-red-600"></div>
               </div>
+            </div>
+          </div>
+        </div>
 
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-guild-text font-fantasy mb-6">
-                By Royal Decree of the Digital Realm
+        {/* Floating Code Snippets */}
+        <div className="absolute inset-0 z-5 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-10 text-white/20 font-mono text-sm">
+            <div className="bg-black/30 backdrop-blur-sm border border-red-600/20 rounded px-3 py-2">
+              const guild = "legendary";
+            </div>
+          </div>
+          <div className="absolute top-1/3 right-16 text-white/20 font-mono text-sm">
+            <div className="bg-black/30 backdrop-blur-sm border border-red-600/20 rounded px-3 py-2">
+              function adventure() {"{"}
+            </div>
+          </div>
+          <div className="absolute bottom-1/3 left-1/4 text-white/20 font-mono text-sm">
+            <div className="bg-black/30 backdrop-blur-sm border border-red-600/20 rounded px-3 py-2">
+              return mastery;
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white rounded-full mt-2 animate-bounce"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section className="py-32 bg-white">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 tracking-tight">
+                WHERE CODE BECOMES
+                <span className="block text-red-600">LEGEND</span>
               </h2>
-
-              <p className="mx-auto max-w-[800px] text-lg md:text-xl text-guild-muted font-mystical leading-relaxed mb-8">
-                The Guild Master hereby summons all aspiring digital mages to join our noble order. Whether you seek to
-                master the arcane arts of code or forge legendary artifacts of innovation, your destiny awaits within
-                our hallowed halls.
+              <div className="w-24 h-1 bg-red-600 mx-auto mb-8"></div>
+              <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                We don't just teach programming. We forge digital pioneers who shape the future through epic quests,
+                legendary challenges, and real-world impact.
               </p>
+            </div>
 
-              <div className="flex flex-col gap-6 sm:flex-row justify-center sm:gap-8">
-                <Button
-                  asChild
-                  className="relative px-10 py-4 text-lg bg-gradient-to-r from-mystical-gold to-mystical-gold/80 hover:from-mystical-gold/90 hover:to-mystical-gold text-obsidian font-bold shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-mystical-gold font-fantasy"
-                >
-                  <Link href="/join-us">
-                    <Crown className="mr-2 h-5 w-5" />
-                    Accept the Call
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="relative px-10 py-4 text-lg border-2 border-mystical-gold text-mystical-gold bg-mystical-gold/10 hover:bg-mystical-gold/20 shadow-xl transition-all duration-300 transform hover:scale-105 font-fantasy"
-                >
-                  <Link href="/quests">
-                    <Sword className="mr-2 h-5 w-5" />
-                    Explore Sacred Quests
-                  </Link>
-                </Button>
+            <div className="grid md:grid-cols-3 gap-12">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Code className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Epic Quests</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  From Bug Bounty Brigades to AI Companion Crafting - each adventure builds real-world skills.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Legendary Community</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Join a brotherhood of digital architects. Form teams, compete, and collaborate on grand campaigns.
+                </p>
+              </div>
+
+              <div className="text-center">
+                <div className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Shield className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Real Impact</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Your code makes a difference. Contribute to open-source, fix real bugs, build AI that evolves.
+                </p>
               </div>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-32 bg-gray-900">
+        <div className="container px-4 md:px-6 mx-auto">
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tight">
+              YOUR DIGITAL
+              <span className="block text-red-600">ADVENTURE AWAITS</span>
+            </h2>
+            <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+              Transform from novice to legendary digital archmage. Join our noble order today.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="px-12 py-6 text-xl font-bold bg-red-600 hover:bg-red-700 text-white border-0 shadow-xl"
+              >
+                <Link href="/join-us">
+                  <Crown className="mr-3 h-6 w-6" />
+                  Join the Guild
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="px-12 py-6 text-xl border-2 border-white text-white hover:bg-white hover:text-gray-900 bg-transparent"
+              >
+                <Link href="/quests">
+                  <Scroll className="mr-3 h-6 w-6" />
+                  Explore Quests
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <FantasyFooter />
     </div>
   )

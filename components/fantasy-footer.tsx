@@ -1,34 +1,53 @@
 import Link from "next/link"
-import { Crown, Scroll } from "lucide-react"
+import { Shield, Scroll, Star } from "lucide-react"
 
 export function FantasyFooter() {
   return (
-    <footer className="relative flex flex-col gap-2 sm:flex-row py-8 w-full shrink-0 items-center px-4 md:px-6 border-t-2 border-mystical-gold/30 bg-gradient-to-r from-obsidian via-obsidian-light to-obsidian">
-      <div className="absolute inset-0 bg-gradient-to-r from-mystical-purple/5 via-transparent to-mystical-gold/5"></div>
+    <footer className="relative py-16 bg-black">
+      <div className="container px-4 md:px-6 mx-auto">
+        <div className="flex flex-col items-center text-center">
+          {/* Guild Emblem */}
+          <div className="mb-8">
+            <Shield className="w-12 h-12 text-red-600" />
+          </div>
 
-      <div className="relative flex items-center gap-2">
-        <Crown className="h-4 w-4 text-mystical-gold" />
-        <p className="text-sm text-guild-muted font-mystical">
-          &copy; {new Date().getFullYear()} The Adventurers Guild. By Royal Decree of the Digital Realm.
-        </p>
+          {/* Guild Name */}
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-white mb-2">The Adventurers Guild</h3>
+            <p className="text-gray-400">Forging Digital Pioneers Since 2024</p>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex flex-wrap justify-center gap-8 mb-12">
+            <Link
+              className="flex items-center gap-2 text-gray-400 hover:text-red-600 transition-colors duration-300"
+              href="#"
+            >
+              <Scroll className="h-4 w-4" />
+              Guild Charter
+            </Link>
+            <Link
+              className="flex items-center gap-2 text-gray-400 hover:text-red-600 transition-colors duration-300"
+              href="#"
+            >
+              <Star className="h-4 w-4" />
+              Code of Honor
+            </Link>
+            <Link
+              className="flex items-center gap-2 text-gray-400 hover:text-red-600 transition-colors duration-300"
+              href="#"
+            >
+              <Shield className="h-4 w-4" />
+              Privacy Decree
+            </Link>
+          </nav>
+
+          {/* Copyright */}
+          <div className="text-gray-500 text-sm">
+            &copy; {new Date().getFullYear()} The Adventurers Guild. By Royal Decree of the Digital Realm.
+          </div>
+        </div>
       </div>
-
-      <nav className="relative sm:ml-auto flex gap-6">
-        <Link
-          className="flex items-center gap-1 text-sm text-guild-muted hover:text-mystical-gold transition-colors"
-          href="#"
-        >
-          <Scroll className="h-3 w-3" />
-          Guild Charter
-        </Link>
-        <Link
-          className="flex items-center gap-1 text-sm text-guild-muted hover:text-mystical-gold transition-colors"
-          href="#"
-        >
-          <Scroll className="h-3 w-3" />
-          Code of Honor
-        </Link>
-      </nav>
     </footer>
   )
 }
