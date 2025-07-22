@@ -14,7 +14,7 @@ export function FantasyFooter() {
           {/* Guild Name */}
           <div className="mb-8">
             <h3 className="text-2xl font-bold text-white mb-2">The Adventurers Guild</h3>
-            <p className="text-gray-400">Forging Digital Pioneers Since 2024</p>
+            <p className="text-gray-400">Forging Digital Pioneers Since 2025</p>
           </div>
 
           {/* Navigation Links */}

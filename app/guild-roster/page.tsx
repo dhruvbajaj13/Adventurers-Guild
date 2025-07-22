@@ -115,4 +115,4 @@ export default function GuildRosterPage() {
               </div>
               <div className="text-center p-6 bg-guild-surface rounded-xl border-2 border-mystical-emerald/30 shadow-lg">
                 <Star className="h-8 w-8 text-mystical-emerald mx-auto mb-3" />
-                <div className="text-3xl font-bold text-mystical-emerald font-fantasy">3\
+                <div className="text-3xl font-bold text-mystical-emerald font-fantasy">3

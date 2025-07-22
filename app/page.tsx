@@ -42,7 +42,7 @@ export default function HomePage() {
               <div className="w-20 h-20 rounded-full border-4 border-red-600 bg-white/10 backdrop-blur-sm flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-xs font-bold text-red-600">EST</div>
-                  <div className="text-lg font-black text-white">2024</div>
+                  <div className="text-lg font-black text-white">2025</div>
                 </div>
               </div>
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
@@ -91,7 +91,7 @@ export default function HomePage() {
               <div className="w-32 h-32 rounded-full border-4 border-red-600 bg-white/10 backdrop-blur-sm flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-sm font-bold text-red-600">EST</div>
-                  <div className="text-3xl font-black text-white">2024</div>
+                  <div className="text-3xl font-black text-white">2025</div>
                   <ArrowDown className="w-4 h-4 text-red-600 mx-auto mt-1" />
                   <div className="text-3xl font-black text-white">∞</div>
                 </div>
