@@ -6,6 +6,8 @@
 
 **Ever read a manga and wished there was an Adventurer's Guild for your own craft? This is it—for coders.**
 
+![Guild Logo](public/images/guild-logo.png)
+
 This open-source project is a digital guild hall where developers can find their next adventure. Instead of slaying slimes, you'll be squashing bugs. Instead of exploring dungeons, you'll be building epic features.
 Our Linkedin Page : https://www.linkedin.com/company/adventurers-guild
 
