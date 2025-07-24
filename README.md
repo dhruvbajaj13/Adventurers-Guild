@@ -8,6 +8,8 @@
 
 This open-source project is a digital guild hall where developers can find their next adventure. Instead of slaying slimes, you'll be squashing bugs. Instead of exploring dungeons, you'll be building epic features.
 
+For Contributers vie the CONTRIUTING.md for the instructions
+
 ## How It Works
 
 Just like any guild, we have a structured way for adventurers to prove their worth:
