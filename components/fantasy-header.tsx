@@ -1,6 +1,4 @@
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet"
 import { MenuIcon, Shield } from "lucide-react"
 
 export function FantasyHeader() {
@@ -21,57 +19,17 @@ export function FantasyHeader() {
           <Link className="text-white hover:text-red-600 transition-colors duration-300 font-bold" href="/">
             Guild Hall
           </Link>
-          <Link className="text-white hover:text-red-600 transition-colors duration-300 font-bold" href="/quests">
-            Quest Board
-          </Link>
-          <Link className="text-white hover:text-red-600 transition-colors duration-300 font-bold" href="/join-us">
-            Join Order
-          </Link>
-          <Link className="text-white hover:text-red-600 transition-colors duration-300 font-bold" href="/guild-roster">
-            Noble Registry
-          </Link>
         </nav>
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              className="ml-auto md:hidden bg-black/30 border border-red-600/30 hover:bg-red-600/20"
-              size="icon"
-              variant="ghost"
-            >
-              <MenuIcon className="h-6 w-6 text-white" />
-              <span className="sr-only">Toggle navigation menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="bg-gray-900/95 backdrop-blur-xl border-l border-red-600/30">
-            <div className="grid gap-6 py-6">
-              <Link
-                className="flex w-full items-center py-4 text-lg font-bold text-white hover:text-red-600 transition-colors duration-300"
-                href="/"
-              >
-                Guild Hall
-              </Link>
-              <Link
-                className="flex w-full items-center py-4 text-lg font-bold text-white hover:text-red-600 transition-colors duration-300"
-                href="/quests"
-              >
-                Quest Board
-              </Link>
-              <Link
-                className="flex w-full items-center py-4 text-lg font-bold text-white hover:text-red-600 transition-colors duration-300"
-                href="/join-us"
-              >
-                Join Order
-              </Link>
-              <Link
-                className="flex w-full items-center py-4 text-lg font-bold text-white hover:text-red-600 transition-colors duration-300"
-                href="/guild-roster"
-              >
-                Noble Registry
-              </Link>
-            </div>
-          </SheetContent>
-        </Sheet>
+        {/* Mobile navigation - removed Sheet and Button components */}
+        <div className="ml-auto md:hidden">
+          <button
+            className="bg-black/30 border border-red-600/30 hover:bg-red-600/20 p-2 rounded-md"
+            aria-label="Toggle navigation menu"
+          >
+            <MenuIcon className="h-6 w-6 text-white" />
+          </button>
+        </div>
       </div>
     </header>
   )
