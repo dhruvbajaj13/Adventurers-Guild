@@ -423,13 +423,13 @@ export default function AdventurersGuildLanding() {
             </div>
             
             <div className="flex items-center space-x-6">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/company/adventurers-guild" className="text-gray-400 hover:text-white transition-colors">
                 <Linkedin className="w-6 h-6" />
               </Link>
               <Link href="#" className="text-gray-400 hover:text-white transition-colors">
                 <Twitter className="w-6 h-6" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://github.com/LarytheLord/Adventurers-Guild" className="text-gray-400 hover:text-white transition-colors">
                 <Github className="w-6 h-6" />
               </Link>
             </div>
