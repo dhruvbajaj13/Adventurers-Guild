@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/badge"
 import { Code, Zap, Target, Users, Trophy, Compass, Shield, Sword, ChevronRight, CheckCircle, Github, Linkedin, Twitter, ArrowRight, Star, Sparkles, Menu, X } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 
 export default function AdventurersGuildLanding() {
   const [email, setEmail] = useState('')
@@ -22,9 +23,9 @@ export default function AdventurersGuildLanding() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-white/30 backdrop-blur-xl border-b border-gray-200/30 transition-all duration-300">
+      <nav className="fixed top-0 w-full z-50 bg-background/30 backdrop-blur-xl border-b border-border/30 transition-all duration-300">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <Image 
@@ -34,23 +35,24 @@ export default function AdventurersGuildLanding() {
               height={40}
               className="w-10 h-10"
             />
-            <span className="text-xl font-bold text-gray-900">The Adventurers Guild</span>
+            <span className="text-xl font-bold text-foreground">The Adventurers Guild</span>
           </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#how-it-works" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            <Link href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
               How It Works
             </Link>
-            <Link href="#benefits" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            <Link href="#benefits" className="text-muted-foreground hover:text-foreground transition-colors font-medium">
               Benefits
             </Link>
             <Button 
-              className="bg-red-600 hover:bg-red-700 text-white px-6 py-2 font-semibold transition-all duration-300 ease-out"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 font-semibold transition-all duration-300 ease-out"
               onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Join Waitlist
             </Button>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
@@ -64,17 +66,20 @@ export default function AdventurersGuildLanding() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
+          <div className="md:hidden bg-background border-t border-border">
             <div className="px-6 py-4 space-y-4">
-              <Link href="#how-it-works" className="block text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="#how-it-works" className="block text-muted-foreground hover:text-foreground font-medium">
                 How It Works
               </Link>
-              <Link href="#benefits" className="block text-gray-600 hover:text-gray-900 font-medium">
+              <Link href="#benefits" className="block text-muted-foreground hover:text-foreground font-medium">
                 Benefits
               </Link>
-              <Button className="w-full bg-red-600 hover:bg-red-700 text-white transition-all duration-300 ease-out">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-300 ease-out">
                 Join Waitlist
               </Button>
+              <div className="flex justify-end">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         )}
@@ -151,27 +156,27 @@ export default function AdventurersGuildLanding() {
 
         {/* Hero Content */}
         <div className="relative z-10 text-center max-w-7xl mx-auto px-6">
-          <Badge className="mb-8 bg-red-600/90 text-white border-0 px-4 py-2 text-sm font-semibold">
+          <Badge className="mb-8 bg-primary text-primary-foreground border-0 px-4 py-2 text-sm font-semibold">
             REVOLUTIONARY CS COMMUNITY
           </Badge>
           
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 text-white leading-none tracking-tight">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-8 text-foreground leading-none tracking-tight">
             ADVENTURERS
             <br />
             GUILD
           </h1>
           
-          <p className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-white/90 max-w-4xl mx-auto leading-tight">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold mb-12 text-foreground/90 max-w-4xl mx-auto leading-tight">
             FORGING DIGITAL PIONEERS
           </p>
 
           {/* Circular Badge */}
           <div className="mb-12 animate-pulse">
-            <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-4 border-red-600 bg-white/10 backdrop-blur-xl shadow-2xl hover:scale-110 transition-all duration-500">
+            <div className="inline-flex items-center justify-center w-32 h-32 rounded-full border-4 border-primary bg-primary/10 backdrop-blur-xl shadow-2xl hover:scale-110 transition-all duration-500">
               <div className="text-center">
-                <div className="text-sm font-bold text-white">EST</div>
-                <div className="text-2xl font-black text-red-600">2025</div>
-                <ChevronRight className="w-4 h-4 text-white mx-auto mt-1 animate-bounce" />
+                <div className="text-sm font-bold text-foreground">EST</div>
+                <div className="text-2xl font-black text-primary">2025</div>
+                <ChevronRight className="w-4 h-4 text-foreground mx-auto mt-1 animate-bounce" />
               </div>
             </div>
           </div>
@@ -179,7 +184,7 @@ export default function AdventurersGuildLanding() {
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button 
               size="lg" 
-              className="bg-red-600 hover:bg-red-700 text-white px-12 py-4 text-xl font-bold transition-all duration-300 ease-out"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-12 py-4 text-xl font-bold transition-all duration-300 ease-out"
               onClick={() => document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' })}
             >
               JOIN THE GUILD
@@ -189,14 +194,14 @@ export default function AdventurersGuildLanding() {
       </section>
 
       {/* Mission Statement */}
-      <section className="py-24 px-6 bg-gray-50">
+      <section className="py-24 px-6 bg-background">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-8 text-gray-900 leading-tight">
+          <h2 className="text-4xl md:text-6xl font-black mb-8 text-foreground leading-tight">
             WE'RE NOT JUST CODING.
             <br />
             WE'RE CHARTING THE UNSEEN.
           </h2>
-          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
             Transform your computer science education into an epic quest. Gain real-world skills, 
             earn XP, and ascend the ranks from F to S by tackling challenges commissioned by real companies.
           </p>
@@ -204,13 +209,13 @@ export default function AdventurersGuildLanding() {
       </section>
 
       {/* Problem Section */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6 bg-background">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground">
               THE PROBLEM
             </h2>
-            <p className="text-2xl text-gray-600 font-medium">
+            <p className="text-2xl text-muted-foreground font-medium">
               Traditional CS education is broken
             </p>
           </div>
@@ -239,12 +244,12 @@ export default function AdventurersGuildLanding() {
               }
             ].map((item, index) => (
               <div key={index} className="flex items-start space-x-6 hover:translate-y-[-4px] transition-transform duration-300 ease-out">
-                <div className="text-6xl font-black text-red-600/20">
+                <div className="text-6xl font-black text-primary/20">
                   {item.number}
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900">{item.title}</h3>
-                  <p className="text-lg text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="text-2xl font-bold mb-4 text-foreground">{item.title}</h3>
+                  <p className="text-lg text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -253,13 +258,13 @@ export default function AdventurersGuildLanding() {
       </section>
 
       {/* Solution Section */}
-      <section id="how-it-works" className="py-24 px-6 bg-gray-900 text-white">
+      <section id="how-it-works" className="py-24 px-6 bg-card text-card-foreground">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-7xl font-black mb-6">
               THE SOLUTION
             </h2>
-            <p className="text-2xl text-gray-300 font-medium">
+            <p className="text-2xl text-muted-foreground font-medium">
               Gamified, real-world CS education
             </p>
           </div>
@@ -303,7 +308,7 @@ export default function AdventurersGuildLanding() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
-                    <p className="text-lg text-gray-300 leading-relaxed">{item.desc}</p>
+                    <p className="text-lg text-muted-foreground leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -313,10 +318,10 @@ export default function AdventurersGuildLanding() {
       </section>
 
       {/* Benefits Section */}
-      <section id="benefits" className="py-24 px-6">
+      <section id="benefits" className="py-24 px-6 bg-background">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-gray-900">
+            <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground">
               WHY JOIN?
             </h2>
           </div>
@@ -343,8 +348,8 @@ export default function AdventurersGuildLanding() {
                 <div className="text-6xl mb-6">
                   {benefit.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-gray-900">{benefit.title}</h3>
-                <p className="text-lg text-gray-600 leading-relaxed">{benefit.desc}</p>
+                <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">{benefit.desc}</p>
               </div>
             ))}
           </div>
@@ -352,16 +357,16 @@ export default function AdventurersGuildLanding() {
       </section>
 
       {/* Waitlist Section */}
-      <section id="waitlist" className="py-24 px-6 bg-red-600">
+      <section id="waitlist" className="py-24 px-6 bg-primary">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-5xl md:text-7xl font-black mb-8 text-white">
+          <h2 className="text-5xl md:text-7xl font-black mb-8 text-primary-foreground">
             READY TO BEGIN?
           </h2>
-          <p className="text-xl md:text-2xl text-white/90 mb-16 font-medium">
+          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-16 font-medium">
             Join the waitlist and be among the first to embark on your adventure
           </p>
           
-          <Card className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border-0">
+          <Card className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border-0">
             <CardContent className="p-12">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -371,7 +376,7 @@ export default function AdventurersGuildLanding() {
                       placeholder="Your Name (Optional)"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="text-lg py-4 border-2 border-gray-200 focus:border-red-600"
+                      className="text-lg py-4 border-2 border-border focus:border-primary"
                     />
                     <Input
                       type="email"
@@ -379,13 +384,13 @@ export default function AdventurersGuildLanding() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="text-lg py-4 border-2 border-gray-200 focus:border-red-600"
+                      className="text-lg py-4 border-2 border-border focus:border-primary"
                     />
                   </div>
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-red-600 hover:bg-red-700 text-white py-4 text-xl font-bold transition-all duration-300 ease-out"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-xl font-bold transition-all duration-300 ease-out"
                   >
                     ENLIST NOW
                   </Button>
@@ -393,8 +398,8 @@ export default function AdventurersGuildLanding() {
               ) : (
                 <div className="text-center py-8">
                   <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Welcome to the Guild!</h3>
-                  <p className="text-gray-600">
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Welcome to the Guild!</h3>
+                  <p className="text-muted-foreground">
                     Your adventure begins soon. Check your email for updates.
                   </p>
                 </div>
@@ -405,7 +410,7 @@ export default function AdventurersGuildLanding() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-6 bg-gray-900 text-white">
+      <footer className="py-16 px-6 bg-card text-card-foreground">
         <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-3 mb-8 md:mb-0">
@@ -418,24 +423,24 @@ export default function AdventurersGuildLanding() {
               />
               <div>
                 <div className="text-xl font-bold">The Adventurers Guild</div>
-                <div className="text-gray-400">Forging Digital Pioneers</div>
+                <div className="text-muted-foreground">Forging Digital Pioneers</div>
               </div>
             </div>
             
             <div className="flex items-center space-x-6">
-              <Link href="https://www.linkedin.com/company/adventurers-guild" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://www.linkedin.com/company/adventurers-guild" className="text-muted-foreground hover:text-card-foreground transition-colors">
                 <Linkedin className="w-6 h-6" />
               </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="#" className="text-muted-foreground hover:text-card-foreground transition-colors">
                 <Twitter className="w-6 h-6" />
               </Link>
-              <Link href="https://github.com/LarytheLord/Adventurers-Guild" className="text-gray-400 hover:text-white transition-colors">
+              <Link href="https://github.com/LarytheLord/Adventurers-Guild" className="text-muted-foreground hover:text-card-foreground transition-colors">
                 <Github className="w-6 h-6" />
               </Link>
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-400">
+          <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
             © {new Date().getFullYear()} The Adventurers Guild. All rights reserved.
           </div>
         </div>
