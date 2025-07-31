@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Zap, Target, Users, Trophy, Compass, Shield, Sword, ChevronRight, CheckCircle, Github, Linkedin, Twitter, ArrowRight, Star, Sparkles, Menu, X } from 'lucide-react'
+import { Code, Zap, Target, Users, Trophy, Compass, Shield, Sword, ChevronRight, CheckCircle, Github, Linkedin, Twitter, ArrowRight, Star, Sparkles, Menu, X, Mail, Laptop, Rocket } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
@@ -303,8 +303,8 @@ export default function AdventurersGuildLanding() {
                 }
               ].map((item, index) => (
                 <div key={index} className="flex items-start space-x-6 hover:translate-y-[-4px] transition-transform duration-300 ease-out">
-                  <div className="text-4xl">
-                    {item.icon}
+                  <div className="text-4xl text-primary">
+                    <Target />
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-3">{item.title}</h3>
@@ -331,21 +331,21 @@ export default function AdventurersGuildLanding() {
               {
                 title: "Build Real Skills",
                 desc: "Work on projects that actually matter. Build a portfolio that stands out.",
-                icon: "💻"
+                icon: <Laptop />
               },
               {
                 title: "Network & Mentorship",
                 desc: "Connect with industry professionals and experienced developers.",
-                icon: "🤝"
+                icon: <Users />
               },
               {
                 title: "Stand Out",
                 desc: "Demonstrate proven skills that employers actually want to see.",
-                icon: "🚀"
+                icon: <Rocket />
               }
             ].map((benefit, index) => (
               <div key={index} className="text-center hover:translate-y-[-8px] transition-transform duration-300 ease-out">
-                <div className="text-6xl mb-6">
+                <div className="text-6xl mb-6 text-primary">
                   {benefit.icon}
                 </div>
                 <h3 className="text-2xl font-bold mb-4 text-foreground">{benefit.title}</h3>
@@ -371,21 +371,17 @@ export default function AdventurersGuildLanding() {
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
-                    <Input
-                      type="text"
-                      placeholder="Your Name (Optional)"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      className="text-lg py-4 border-2 border-border focus:border-primary"
-                    />
-                    <Input
-                      type="email"
-                      placeholder="Your Email Address"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="text-lg py-4 border-2 border-border focus:border-primary"
-                    />
+                    <div className="relative">
+                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                      <Input
+                        type="email"
+                        placeholder="Your Email Address"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="pl-10 text-lg py-4 border-2 border-border focus:border-primary"
+                      />
+                    </div>
                   </div>
                   <Button 
                     type="submit" 
@@ -396,12 +392,15 @@ export default function AdventurersGuildLanding() {
                   </Button>
                 </form>
               ) : (
-                <div className="text-center py-8">
+                <div className="text-center py-8 space-y-4">
                   <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
                   <h3 className="text-2xl font-bold text-foreground mb-2">Welcome to the Guild!</h3>
                   <p className="text-muted-foreground">
                     Your adventure begins soon. Check your email for updates.
                   </p>
+                  <Link href="/home">
+                    <Button variant="outline" className="mt-4">Back to Home</Button>
+                  </Link>
                 </div>
               )}
             </CardContent>
