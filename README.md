@@ -119,8 +119,29 @@ Ready to wield your skills and contribute to the future of EdTech? Welcome to **
     ```
 
 5.  **Set Up Environment Variables:**
-    * Create a `.env` file in the root directory of the project.
+    * Create a `.env.local` file in the root directory of the project.
     * Refer to our [`CONTRIBUTING.md`](CONTRIBUTING.md) for the required variables (e.g., database credentials, API keys).
+    
+    **For Email Functionality (SMTP Setup):**
+    ```bash
+    # SMTP Configuration for Email Sending
+    SMTP_HOST=smtp.gmail.com
+    SMTP_PORT=587
+    SMTP_USER=your-email@gmail.com
+    SMTP_PASS=your-app-password
+    ADMIN_EMAIL=your-email@gmail.com
+
+    # Next.js
+    NEXT_PUBLIC_APP_URL=https://adventurersguild.vercel.app
+    ```
+    
+    **Gmail Setup (Recommended):**
+    1. Enable 2-Factor Authentication on your Gmail account
+    2. Generate App Password: Google Account → Security → 2-Step Verification → App passwords
+    3. Select "Mail" and generate a 16-character password
+    4. Use this password in `SMTP_PASS` (not your regular Gmail password)
+    
+    **⚠️ Security Note:** Never commit `.env.local` to Git (it's already in `.gitignore`)
 
 6.  **Run Locally:**
     ```bash

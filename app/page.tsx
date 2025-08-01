@@ -14,12 +14,43 @@ export default function AdventurersGuildLanding() {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [submittedEmail, setSubmittedEmail] = useState('') // Store the submitted email
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitted(true)
-    setTimeout(() => setIsSubmitted(false), 5000)
+    setIsLoading(true)
+    setError('')
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setSubmittedEmail(email) // Store the email before clearing
+        setIsSubmitted(true)
+        setEmail('')
+        setName('')
+        setTimeout(() => setIsSubmitted(false), 10000)
+      } else {
+        throw new Error(data.message || 'Failed to send email')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      setError('Something went wrong. Please try again.')
+      setTimeout(() => setError(''), 5000)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -370,6 +401,11 @@ export default function AdventurersGuildLanding() {
             <CardContent className="p-12">
               {!isSubmitted ? (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                      {error}
+                    </div>
+                  )}
                   <div className="space-y-4">
                     <Input
                       type="text"
@@ -377,6 +413,7 @@ export default function AdventurersGuildLanding() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="text-lg py-4 border-2 border-border focus:border-primary"
+                      disabled={isLoading}
                     />
                     <Input
                       type="email"
@@ -385,23 +422,35 @@ export default function AdventurersGuildLanding() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       className="text-lg py-4 border-2 border-border focus:border-primary"
+                      disabled={isLoading}
                     />
                   </div>
                   <Button 
                     type="submit" 
                     size="lg" 
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-xl font-bold transition-all duration-300 ease-out"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-xl font-bold transition-all duration-300 ease-out disabled:opacity-50"
+                    disabled={isLoading}
                   >
-                    ENLIST NOW
+                    {isLoading ? (
+                      <>
+                        <span className="animate-spin mr-2">⚡</span>
+                        ENLISTING...
+                      </>
+                    ) : (
+                      'ENLIST NOW'
+                    )}
                   </Button>
                 </form>
               ) : (
                 <div className="text-center py-8">
                   <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold text-foreground mb-2">Welcome to the Guild!</h3>
-                  <p className="text-muted-foreground">
-                    Your adventure begins soon. Check your email for updates.
+                  <h3 className="text-2xl font-bold text-foreground mb-2">Successfully Invited!</h3>
+                  <p className="text-muted-foreground mb-4">
+                    Welcome to The Adventurers Guild! Check your email for your welcome message with all the details about your epic journey ahead.
                   </p>
+                  <div className="text-sm text-muted-foreground">
+                    📧 Welcome email sent to: <strong>{submittedEmail}</strong>
+                  </div>
                 </div>
               )}
             </CardContent>
