@@ -9,6 +9,8 @@ import { Code, Zap, Target, Users, Trophy, Compass, Shield, Sword, ChevronRight,
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
+import { SkillTree } from "@/components/skill-tree"
+import { QuestCompletion } from "@/components/quest-completion"
 
 export default function AdventurersGuildLanding() {
   const [email, setEmail] = useState('')
@@ -189,6 +191,8 @@ export default function AdventurersGuildLanding() {
             >
               JOIN THE GUILD
             </Button>
+            <SkillTree />
+            <QuestCompletion />
           </div>
         </div>
       </section>
