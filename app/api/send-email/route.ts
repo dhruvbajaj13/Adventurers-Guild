@@ -9,28 +9,55 @@ export async function POST(request: NextRequest) {
     try {
         const { name, email } = await request.json()
 
-        // Create SMTP transporter with optimizations
+        // Validate required environment variables
+        if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
+            console.error('Missing SMTP credentials')
+            return NextResponse.json({
+                message: 'Email service configuration error',
+                success: false
+            }, { status: 500 })
+        }
+
+        // Create SMTP transporter with optimized settings for Vercel
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST || 'smtp.gmail.com',
             port: parseInt(process.env.SMTP_PORT || '587'),
-            secure: process.env.SMTP_PORT === '465',
+            secure: process.env.SMTP_PORT === '465', // true for 465, false for other ports
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS,
             },
-            pool: true, // Use connection pooling
-            maxConnections: 5, // Limit connections
-            maxMessages: 100, // Limit messages per connection
-            connectionTimeout: 8000, // 8 seconds (reduced)
-            greetingTimeout: 3000, // 3 seconds (reduced)
-            socketTimeout: 10000, // 10 seconds (reduced)
+            // Optimized settings for serverless environment
+            pool: false, // Disable connection pooling for serverless
+            maxConnections: 1,
+            maxMessages: 1,
+            connectionTimeout: 60000, // 60 seconds
+            greetingTimeout: 30000, // 30 seconds
+            socketTimeout: 60000, // 60 seconds
+            // Additional options for better reliability
+            tls: {
+                rejectUnauthorized: false
+            }
         })
+
+        // Verify transporter configuration
+        try {
+            await transporter.verify()
+            console.log('SMTP server is ready to take our messages')
+        } catch (verifyError) {
+            console.error('SMTP verification failed:', verifyError)
+            return NextResponse.json({
+                message: 'Email service verification failed',
+                success: false
+            }, { status: 500 })
+        }
 
         // Welcome email to the user
         const welcomeEmail = {
             from: `"The Adventurers Guild" <${process.env.SMTP_USER}>`,
             to: email,
-            subject: '🛡️ You’ve Joined the Waitlist – Your Quest Board Access is Near!',
+            replyTo: process.env.SMTP_USER,
+            subject: '🛡️ You\'ve Joined the Waitlist – Your Quest Board Access is Near!',
             html: `
     <!DOCTYPE html>
     <html>
@@ -54,7 +81,7 @@ export async function POST(request: NextRequest) {
       <div style="margin: 20px 0;">
         <h3 style="color: #333;">🧭 What Happens Next:</h3>
         <ol style="padding-left: 20px;">
-          <li><strong>Account Setup:</strong> We’ll notify you once your client portal is ready.</li>
+          <li><strong>Account Setup:</strong> We'll notify you once your client portal is ready.</li>
           <li><strong>Post Quests:</strong> You'll be able to submit real development problems (quests) to be solved by our ranked adventurers.</li>
           <li><strong>Track Progress:</strong> Get real-time updates, review submissions, and give feedback.</li>
           <li><strong>Pay Per Quest:</strong> Only pay for accepted work. We charge a platform service fee (15–30%) from the developer side.</li>
@@ -73,7 +100,7 @@ export async function POST(request: NextRequest) {
 
       <div style="margin-top: 30px;">
         <h3 style="color: #333;">💬 Have Questions?</h3>
-        <p>We’re always here to help you design a quest or review submissions.</p>
+        <p>We're always here to help you design a quest or review submissions.</p>
         <p>Reply to this email or connect with us on <a href="https://discord.gg/7hQYkEx5" style="color: #667eea;">Discord</a>.</p>
       </div>
 
@@ -95,6 +122,7 @@ export async function POST(request: NextRequest) {
         const adminEmail = {
             from: `"Guild System" <${process.env.SMTP_USER}>`,
             to: process.env.ADMIN_EMAIL || process.env.SMTP_USER,
+            replyTo: process.env.SMTP_USER,
             subject: '🎯 New Guild Member Enlisted!',
             html: `
     <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 2px solid #667eea; border-radius: 8px;">
@@ -134,29 +162,53 @@ export async function POST(request: NextRequest) {
   `
         }
 
+        // Send emails sequentially instead of parallel to avoid rate limits
+        console.log('Sending welcome email...')
+        const userEmailResult = await transporter.sendMail(welcomeEmail)
+        console.log('Welcome email sent:', userEmailResult.messageId)
 
-        // Send emails in parallel for faster response
-        const [userEmailResult, adminEmailResult] = await Promise.allSettled([
-            transporter.sendMail(welcomeEmail),
-            transporter.sendMail(adminEmail)
-        ])
-
-        // Check if at least the user email was sent
-        if (userEmailResult.status === 'fulfilled') {
-            return NextResponse.json({
-                message: 'Welcome email sent successfully!',
-                success: true
-            }, { status: 200 })
-        } else {
-            throw new Error('Failed to send welcome email')
+        // Send admin email with error handling
+        try {
+            console.log('Sending admin notification...')
+            const adminEmailResult = await transporter.sendMail(adminEmail)
+            console.log('Admin email sent:', adminEmailResult.messageId)
+        } catch (adminError) {
+            console.error('Admin email failed (non-critical):', adminError)
+            // Don't fail the request if admin email fails
         }
 
-    } catch (error) {
-        console.error('SMTP Error:', error)
+        // Close the transporter
+        transporter.close()
+
         return NextResponse.json({
-            message: 'Failed to send email',
-            error: error instanceof Error ? error.message : 'Unknown error',
-            success: false
+            message: 'Welcome email sent successfully!',
+            success: true
+        }, { status: 200 })
+
+    } catch (error) {
+        console.error('Email sending error:', error)
+        
+        // Provide more specific error messages
+        let errorMessage = 'Failed to send email'
+        if (error instanceof Error) {
+            if (error.message.includes('authentication')) {
+                errorMessage = 'Email authentication failed'
+            } else if (error.message.includes('timeout')) {
+                errorMessage = 'Email service timeout'
+            } else if (error.message.includes('connection')) {
+                errorMessage = 'Email service connection failed'
+            } else {
+                errorMessage = error.message
+            }
+        }
+
+        return NextResponse.json({
+            message: errorMessage,
+            success: false,
+            // Only include error details in development
+            ...(process.env.NODE_ENV === 'development' && { 
+                error: error instanceof Error ? error.message : 'Unknown error' 
+            })
         }, { status: 500 })
     }
 }
