@@ -9,8 +9,6 @@ import { Code, Zap, Target, Users, Trophy, Compass, Shield, Sword, ChevronRight,
 import Image from "next/image"
 import Link from "next/link"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
-import { SkillTree } from "@/components/skill-tree"
-import { QuestCompletion } from "@/components/quest-completion"
 
 export default function AdventurersGuildLanding() {
   const [email, setEmail] = useState('')
@@ -197,207 +195,20 @@ export default function AdventurersGuildLanding() {
             >
               JOIN THE GUILD
             </Button>
+            <Link href="/home">
+              <Button 
+                size="lg" 
+                variant="outline"
+                className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground px-12 py-4 text-xl font-bold transition-all duration-300 ease-out"
+              >
+                ENTER GUILD
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Skill Tree Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-950 dark:to-blue-950">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground">
-              🎮 SKILL TREE
-            </h2>
-            <p className="text-2xl text-muted-foreground font-medium">
-              Track your growth and unlock new abilities
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="space-y-8">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white mb-6">
-                    <Sparkles className="w-12 h-12" />
-                  </div>
-                  <h3 className="text-3xl font-bold mb-4">Developer Progression System</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Earn Skill Points (SP) by completing quests and unlock new skill branches. 
-                    Visualize your growth across different technical domains.
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-6">
-                  {[
-                    { name: 'Frontend', icon: '⚛️', color: 'bg-blue-500', points: '1,250 SP' },
-                    { name: 'Backend', icon: '🖥️', color: 'bg-green-500', points: '800 SP' },
-                    { name: 'AI/ML', icon: '🧠', color: 'bg-purple-500', points: '200 SP' },
-                    { name: 'DevOps', icon: '⚡', color: 'bg-orange-500', points: '0 SP' }
-                  ].map((skill, index) => (
-                    <Card key={index} className="text-center p-6 hover:scale-105 transition-transform duration-300">
-                      <div className={`w-16 h-16 rounded-full ${skill.color} text-white flex items-center justify-center mx-auto mb-4 text-2xl`}>
-                        {skill.icon}
-                      </div>
-                      <h4 className="font-bold text-lg mb-2">{skill.name}</h4>
-                      <p className="text-sm text-muted-foreground">{skill.points}</p>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
-            
-            <div className="relative">
-              <div className="bg-card rounded-2xl p-8 shadow-2xl border-2 border-purple-200 dark:border-purple-800">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-4">Your Skill Progress</h3>
-                  <div className="flex items-center justify-center space-x-4">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600">2,250</div>
-                      <div className="text-sm text-muted-foreground">Total SP</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-green-600">8</div>
-                      <div className="text-sm text-muted-foreground">Skills Unlocked</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600">75%</div>
-                      <div className="text-sm text-muted-foreground">Progress</div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="space-y-4">
-                  {[
-                    { name: 'React Mastery', progress: 90, color: 'bg-blue-500' },
-                    { name: 'TypeScript', progress: 60, color: 'bg-blue-600' },
-                    { name: 'Node.js', progress: 80, color: 'bg-green-500' },
-                    { name: 'Python for AI', progress: 40, color: 'bg-purple-500' }
-                  ].map((skill, index) => (
-                    <div key={index} className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">{skill.progress}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                        <div 
-                          className={`h-2 rounded-full ${skill.color} transition-all duration-300`}
-                          style={{ width: `${skill.progress}%` }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="mt-8 text-center">
-                  <SkillTree />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Quest Completion Section */}
-      <section className="py-24 px-6 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground">
-              🎯 QUEST COMPLETION
-            </h2>
-            <p className="text-2xl text-muted-foreground font-medium">
-              Complete challenges and earn rewards
-            </p>
-          </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative">
-              <div className="bg-card rounded-2xl p-8 shadow-2xl border-2 border-green-200 dark:border-green-800">
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold mb-4">Available Quests</h3>
-                  <p className="text-muted-foreground">Choose your next challenge</p>
-                </div>
-                
-                <div className="space-y-6">
-                  {[
-                    { 
-                      title: 'Fix React Component Bug', 
-                      difficulty: 'Medium', 
-                      rewards: '+250 SP',
-                      color: 'bg-blue-500'
-                    },
-                    { 
-                      title: 'Create REST API Endpoint', 
-                      difficulty: 'Hard', 
-                      rewards: '+350 SP',
-                      color: 'bg-green-500'
-                    },
-                    { 
-                      title: 'Implement ML Model', 
-                      difficulty: 'Hard', 
-                      rewards: '+300 SP',
-                      color: 'bg-purple-500'
-                    }
-                  ].map((quest, index) => (
-                    <Card key={index} className="p-4 hover:scale-105 transition-transform duration-300">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <div className={`w-3 h-3 rounded-full ${quest.color}`}></div>
-                          <div>
-                            <h4 className="font-semibold">{quest.title}</h4>
-                            <div className="flex items-center space-x-2 mt-1">
-                              <Badge variant="outline" className="text-xs">
-                                {quest.difficulty}
-                              </Badge>
-                              <span className="text-sm text-muted-foreground">{quest.rewards}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <Trophy className="w-5 h-5 text-yellow-500" />
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-                
-                <div className="mt-8 text-center">
-                  <QuestCompletion />
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <div className="space-y-8">
-                <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-r from-green-600 to-emerald-600 text-white mb-6">
-                    <Trophy className="w-12 h-12" />
-                  </div>
-                  <h3 className="text-3xl font-bold mb-4">Gamified Learning</h3>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
-                    Complete real-world projects commissioned by companies. 
-                    Earn skill points and climb the ranks from F to S.
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-6">
-                  {[
-                    { name: 'Completed Quests', icon: '✅', value: '12', color: 'bg-green-500' },
-                    { name: 'Total XP Earned', icon: '⭐', value: '2,450', color: 'bg-yellow-500' },
-                    { name: 'Current Rank', icon: '🏆', value: 'B-Rank', color: 'bg-purple-500' },
-                    { name: 'Skills Unlocked', icon: '🔓', value: '8', color: 'bg-blue-500' }
-                  ].map((stat, index) => (
-                    <Card key={index} className="text-center p-6 hover:scale-105 transition-transform duration-300">
-                      <div className={`w-16 h-16 rounded-full ${stat.color} text-white flex items-center justify-center mx-auto mb-4 text-2xl`}>
-                        {stat.icon}
-                      </div>
-                      <h4 className="font-bold text-lg mb-2">{stat.name}</h4>
-                      <p className="text-2xl font-bold text-primary">{stat.value}</p>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Mission Statement */}
       <section className="py-24 px-6 bg-background">
