@@ -127,21 +127,21 @@ export function QuestCompletion() {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button 
-          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 text-lg font-bold transition-all duration-300 ease-out shadow-lg hover:shadow-xl"
+          className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-bold transition-all duration-300 ease-out shadow-lg hover:shadow-xl"
           onClick={() => setIsOpen(true)}
         >
-          <Trophy className="w-5 h-5 mr-2" />
+          <Trophy className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
           Complete Quest
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-3xl sm:max-w-4xl max-h-[85vh] sm:max-h-[90vh] overflow-y-auto mx-4">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-center mb-6">
+          <DialogTitle className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6">
             🎯 Quest Completion
           </DialogTitle>
         </DialogHeader>
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {sampleQuests.map((quest) => (
             <Card 
               key={quest.id}
@@ -152,22 +152,22 @@ export function QuestCompletion() {
               }`}
             >
               <CardHeader>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
                   <div className="flex items-center space-x-3">
                     <div className="p-2 rounded-lg bg-primary text-white">
-                      <Trophy className="w-5 h-5" />
+                      <Trophy className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg">{quest.title}</CardTitle>
-                      <p className="text-sm text-muted-foreground">{quest.description}</p>
+                      <CardTitle className="text-base sm:text-lg">{quest.title}</CardTitle>
+                      <p className="text-xs sm:text-sm text-muted-foreground">{quest.description}</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-0 sm:space-x-2">
                     <Badge className={getDifficultyColor(quest.difficulty)}>
                       {quest.difficulty}
                     </Badge>
                     {completedQuests.includes(quest.id) && (
-                      <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                      <Badge className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200 text-xs">
                         <CheckCircle className="w-3 h-3 mr-1" />
                         Completed
                       </Badge>
@@ -178,21 +178,21 @@ export function QuestCompletion() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">Skill Rewards:</h4>
+                    <h4 className="font-semibold mb-2 text-sm sm:text-base">Skill Rewards:</h4>
                     <div className="grid gap-3">
                       {quest.rewards.map((reward, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-muted rounded-lg">
+                        <div key={index} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 bg-muted rounded-lg gap-3 sm:gap-0">
                           <div className="flex items-center space-x-3">
                             <div className={`p-2 rounded-lg ${reward.color} text-white`}>
                               {reward.icon}
                             </div>
                             <div>
-                              <div className="font-medium">{reward.skillName}</div>
-                              <div className="text-sm text-muted-foreground">{reward.category}</div>
+                              <div className="font-medium text-sm sm:text-base">{reward.skillName}</div>
+                              <div className="text-xs sm:text-sm text-muted-foreground">{reward.category}</div>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <div className="font-bold text-lg">+{reward.skillPoints} SP</div>
+                          <div className="text-left sm:text-right">
+                            <div className="font-bold text-base sm:text-lg">+{reward.skillPoints} SP</div>
                             <div className="text-xs text-muted-foreground">Skill Points</div>
                           </div>
                         </div>
@@ -202,10 +202,10 @@ export function QuestCompletion() {
                   
                   {!completedQuests.includes(quest.id) && (
                     <Button 
-                      className="w-full bg-primary hover:bg-primary/90"
+                      className="w-full bg-primary hover:bg-primary/90 text-sm sm:text-base"
                       onClick={() => handleQuestCompletion(quest.id)}
                     >
-                      <CheckCircle className="w-4 h-4 mr-2" />
+                      <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                       Complete Quest
                     </Button>
                   )}
@@ -217,17 +217,17 @@ export function QuestCompletion() {
 
         {/* Completion Summary */}
         {completedQuests.length > 0 && (
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             <Card className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950 dark:to-emerald-950 border-2 border-green-200 dark:border-green-800">
-              <CardContent className="p-6">
-                <div className="flex items-center space-x-3 mb-4">
-                  <Award className="w-8 h-8 text-green-600" />
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-3 sm:space-y-0 sm:space-x-3 mb-4">
+                  <Award className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
                   <div>
-                    <h3 className="text-xl font-bold">Quest Completion Summary</h3>
-                    <p className="text-muted-foreground">Your skill points have been awarded!</p>
+                    <h3 className="text-lg sm:text-xl font-bold">Quest Completion Summary</h3>
+                    <p className="text-muted-foreground text-sm sm:text-base">Your skill points have been awarded!</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
                   {[
                     { name: 'Frontend', points: 250, color: 'bg-blue-500' },
                     { name: 'Backend', points: 350, color: 'bg-green-500' },
@@ -235,11 +235,11 @@ export function QuestCompletion() {
                     { name: 'Total', points: 900, color: 'bg-yellow-500' }
                   ].map((category, index) => (
                     <div key={index} className="text-center">
-                      <div className={`w-12 h-12 rounded-full ${category.color} text-white flex items-center justify-center mx-auto mb-2`}>
-                        <Star className="w-6 h-6" />
+                      <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full ${category.color} text-white flex items-center justify-center mx-auto mb-2`}>
+                        <Star className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
-                      <div className="font-bold">{category.points} SP</div>
-                      <div className="text-sm text-muted-foreground">{category.name}</div>
+                      <div className="font-bold text-sm sm:text-base">{category.points} SP</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground">{category.name}</div>
                     </div>
                   ))}
                 </div>
