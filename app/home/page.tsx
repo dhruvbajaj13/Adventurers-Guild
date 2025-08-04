@@ -15,6 +15,9 @@ import { useMemo, useState } from "react";
 import { SkillTree } from "@/components/skill-tree";
 import { QuestCompletion } from "@/components/quest-completion";
 
+import AdventureSearch from '@/components/AdventureSearch';
+import AdventureFilter from '@/components/AdventureFilter';
+
 // --- MOCK DATA ---
 const quests = [
   { title: "Bug Bounty Brigades", description: "Hunt down and squash bugs in existing codebases. A great way to learn and earn XP.", image: "/images/quest-board.png", rank: "C", xp: 500 },
@@ -76,7 +79,6 @@ function UserDashboard() {
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
               Ready to embark on a new quest and forge your legend?
             </p>
-            
             {/* Feature Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <SkillTree />
@@ -108,10 +110,14 @@ function UserDashboard() {
   );
 }
 
-function QuestBoard() {
+export default function HomePage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Added filtering & search state
   const [searchTerm, setSearchTerm] = useState('');
   const [rankFilter, setRankFilter] = useState('all');
 
+  // Filtered Quests
   const filteredQuests = useMemo(() => {
     return quests
       .filter(quest => 
@@ -124,90 +130,6 @@ function QuestBoard() {
   }, [searchTerm, rankFilter]);
 
   return (
-    <section id="quests" className="py-24 px-6 bg-background">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-7xl font-black mb-6 text-foreground">
-            The Quest Board
-          </h2>
-          <p className="text-2xl text-muted-foreground font-medium max-w-3xl mx-auto">
-            Choose your next adventure. Filter by rank, skills, or rewards to find the perfect quest for you.
-          </p>
-        </div>
-
-        <div className="mb-12 flex flex-col md:flex-row gap-4">
-          <div className="relative flex-grow">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-            <Input 
-              type="text"
-              placeholder="Search for quests..." 
-              className="pl-12 text-lg py-6 border-2 border-border focus:border-primary w-full"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-          <Select value={rankFilter} onValueChange={setRankFilter}>
-            <SelectTrigger className="text-lg py-6 border-2 border-border focus:border-primary">
-              <SelectValue placeholder="Filter by rank" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Ranks</SelectItem>
-              <SelectItem value="S">S-Rank</SelectItem>
-              <SelectItem value="A">A-Rank</SelectItem>
-              <SelectItem value="B">B-Rank</SelectItem>
-              <SelectItem value="C">C-Rank</SelectItem>
-              <SelectItem value="D">D-Rank</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredQuests.map((quest, index) => (
-            <QuestCard key={index} quest={quest} />
-          ))}
-        </div>
-        {filteredQuests.length === 0 && (
-            <div className="text-center col-span-full py-16">
-                <p className="text-2xl text-muted-foreground">No quests match your criteria. Try a different search!</p>
-            </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-function AppFooter() {
-  return (
-    <footer className="py-16 px-6 bg-card text-card-foreground">
-      <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="flex items-center space-x-3 mb-8 md:mb-0">
-            <Image src="/images/guild-logo.png" alt="The Adventurers Guild" width={32} height={32} className="w-8 h-8" />
-            <div>
-              <div className="text-xl font-bold">The Adventurers Guild</div>
-              <div className="text-muted-foreground">Forging Digital Pioneers</div>
-            </div>
-          </div>
-          <div className="flex items-center space-x-6">
-            <Link href="https://www.linkedin.com/company/adventurers-guild" className="text-muted-foreground hover:text-card-foreground transition-colors"><Linkedin className="w-6 h-6" /></Link>
-            <Link href="#" className="text-muted-foreground hover:text-card-foreground transition-colors"><Twitter className="w-6 h-6" /></Link>
-            <Link href="https://github.com/LarytheLord/Adventurers-Guild" className="text-muted-foreground hover:text-card-foreground transition-colors"><Github className="w-6 h-6" /></Link>
-          </div>
-        </div>
-        <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
-          &copy; {new Date().getFullYear()} The Adventurers Guild. All rights reserved.
-        </div>
-      </div>
-    </footer>
-  );
-}
-
-// --- MAIN PAGE COMPONENT ---
-
-export default function HomePage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  return (
     <div className="min-h-screen bg-background text-foreground">
       <nav className="sticky top-0 w-full z-50 bg-background/30 backdrop-blur-xl border-b border-border/30 transition-all duration-300">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
@@ -215,7 +137,7 @@ export default function HomePage() {
             <Image src="/images/guild-logo.png" alt="The Adventurers Guild" width={40} height={40} className="w-10 h-10" />
             <span className="text-xl font-bold text-foreground">The Adventurers Guild</span>
           </div>
-          
+
           <div className="hidden md:flex items-center space-x-8">
             <Link href="#quests" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Quest Board</Link>
             <Link href="#profile" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Profile</Link>
@@ -250,10 +172,70 @@ export default function HomePage() {
 
       <main>
         <UserDashboard />
+
+        {/* THIS IS THE ADDED SEARCH & FILTER SECTION */}
+        <section className="px-6 py-8 max-w-6xl mx-auto">
+          <AdventureSearch query={searchTerm} setQuery={setSearchTerm} />
+          <AdventureFilter 
+            filter={{ difficulty: rankFilter, category: '' }} 
+            setFilter={({ difficulty }) => setRankFilter(difficulty || 'all')} 
+            categories={[]} 
+            difficulties={['all','S','A','B','C','D']} 
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+            {filteredQuests.map((quest, index) => (
+              <QuestCard key={index} quest={quest} />
+            ))}
+          </div>
+
+          {filteredQuests.length === 0 && (
+            <div className="text-center col-span-full py-16">
+              <p className="text-2xl text-muted-foreground">No quests match your criteria. Try a different search!</p>
+            </div>
+          )}
+        </section>
+
         <QuestBoard />
       </main>
 
       <AppFooter />
     </div>
+  );
+}
+
+function QuestBoard() {
+  return null; // Rendering replaced by filtered quests, so returning null here
+}
+
+function AppFooter() {
+  return (
+    <footer className="py-16 px-6 bg-card text-card-foreground">
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <div className="flex items-center space-x-3 mb-8 md:mb-0">
+            <Image src="/images/guild-logo.png" alt="The Adventurers Guild" width={32} height={32} className="w-8 h-8" />
+            <div>
+              <div className="text-xl font-bold">The Adventurers Guild</div>
+              <div className="text-muted-foreground">Forging Digital Pioneers</div>
+            </div>
+          </div>
+          <div className="flex items-center space-x-6">
+            <Link href="https://www.linkedin.com/company/adventurers-guild" className="text-muted-foreground hover:text-card-foreground transition-colors">
+              <Linkedin className="w-6 h-6" />
+            </Link>
+            <Link href="#" className="text-muted-foreground hover:text-card-foreground transition-colors">
+              <Twitter className="w-6 h-6" />
+            </Link>
+            <Link href="https://github.com/LarytheLord/Adventurers-Guild" className="text-muted-foreground hover:text-card-foreground transition-colors">
+              <Github className="w-6 h-6" />
+            </Link>
+          </div>
+        </div>
+        <div className="mt-12 pt-8 border-t border-border text-center text-muted-foreground">
+          © {new Date().getFullYear()} The Adventurers Guild. All rights reserved.
+        </div>
+      </div>
+    </footer>
   );
 }
