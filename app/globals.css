@@ -81,6 +81,21 @@
   }
   body {
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Responsive text sizing */
+  @media (max-width: 640px) {
+    h1 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+    h2 {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+    h3 {
+      font-size: clamp(1.25rem, 5vw, 2rem);
+    }
   }
 }
 
@@ -100,6 +115,43 @@
   .pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite alternate;
   }
+  
+  /* Responsive container */
+  .responsive-container {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Responsive grid */
+  .responsive-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  /* Responsive card */
+  .responsive-card {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+  
+  /* Responsive button */
+  .responsive-button {
+    @apply px-4 sm:px-6 lg:px-8 py-2 sm:py-3 text-sm sm:text-base lg:text-lg;
+  }
+  
+  /* Mobile-first responsive utilities */
+  .mobile-first {
+    @apply w-full sm:w-auto;
+  }
+  
+  .mobile-stack {
+    @apply flex flex-col sm:flex-row;
+  }
+  
+  .mobile-center {
+    @apply text-center sm:text-left;
+  }
+  
+  .mobile-full {
+    @apply w-full sm:w-auto;
+  }
 }
 
 @keyframes float {
@@ -118,6 +170,21 @@
   100% {
     box-shadow: 0 0 40px rgba(239, 68, 68, 0.8);
   }
+}
+
+@keyframes slide-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slide-in-from-bottom 0.3s ease-out;
 }
 
 /* Smooth scrolling for all elements */
@@ -141,4 +208,47 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #b91c1c;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Improve touch targets on mobile */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for mobile */
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 2rem;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Large screen improvements */
+@media (min-width: 1025px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }

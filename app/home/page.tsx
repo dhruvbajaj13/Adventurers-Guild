@@ -50,17 +50,17 @@ function QuestCard({ quest }: { quest: typeof quests[0] }) {
   return (
     <Card className="bg-card rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-0 overflow-hidden flex flex-col">
       <CardHeader className="p-0">
-        <Image src={quest.image} alt={quest.title} width={400} height={225} className="w-full h-48 object-cover" />
+        <Image src={quest.image} alt={quest.title} width={400} height={225} className="w-full h-40 sm:h-48 object-cover" />
       </CardHeader>
-      <CardContent className="p-6 flex-grow">
-        <Badge className={`mb-4 ${rankColor}`}>{quest.rank}-Rank</Badge>
-        <CardTitle className="text-2xl font-bold mb-3">{quest.title}</CardTitle>
-        <CardDescription className="text-muted-foreground text-lg leading-relaxed">{quest.description}</CardDescription>
+      <CardContent className="p-4 sm:p-6 flex-grow">
+        <Badge className={`mb-3 sm:mb-4 ${rankColor} text-xs sm:text-sm`}>{quest.rank}-Rank</Badge>
+        <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3">{quest.title}</CardTitle>
+        <CardDescription className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">{quest.description}</CardDescription>
       </CardContent>
-      <CardFooter className="p-6 bg-card-foreground/5 flex items-center justify-between">
-        <div className="font-bold text-lg text-primary">{quest.xp} XP</div>
-        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold">
-          View Quest <ArrowRight className="w-4 h-4 ml-2" />
+      <CardFooter className="p-4 sm:p-6 bg-card-foreground/5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+        <div className="font-bold text-base sm:text-lg text-primary">{quest.xp} XP</div>
+        <Button className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold w-full sm:w-auto text-sm sm:text-base">
+          View Quest <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-2" />
         </Button>
       </CardFooter>
     </Card>
@@ -69,37 +69,37 @@ function QuestCard({ quest }: { quest: typeof quests[0] }) {
 
 function UserDashboard() {
   return (
-    <section id="profile" className="py-24 px-6 bg-card text-card-foreground">
+    <section id="profile" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 bg-card text-card-foreground">
       <div className="container mx-auto max-w-6xl">
-        <div className="grid lg:grid-cols-3 gap-12 items-center">
+        <div className="grid lg:grid-cols-3 gap-8 sm:gap-12 items-center">
           <div className="lg:col-span-2">
-            <h1 className="text-4xl md:text-6xl font-black mb-4 text-foreground leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-3 sm:mb-4 text-foreground leading-tight">
               Welcome Back, Adventurer!
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground leading-relaxed mb-6 sm:mb-8">
               Ready to embark on a new quest and forge your legend?
             </p>
             {/* Feature Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8">
               <SkillTree />
               <QuestCompletion />
             </div>
           </div>
-          <Card className="bg-background rounded-2xl shadow-lg p-6">
-            <div className="flex items-center space-x-4 mb-4">
-              <Avatar className="w-16 h-16">
+          <Card className="bg-background rounded-2xl shadow-lg p-4 sm:p-6">
+            <div className="flex items-center space-x-3 sm:space-x-4 mb-4">
+              <Avatar className="w-12 h-12 sm:w-16 sm:h-16">
                 <AvatarImage src={user.avatar} />
                 <AvatarFallback>{user.name.substring(0, 2)}</AvatarFallback>
               </Avatar>
               <div>
-                <h3 className="text-xl font-bold">{user.name}</h3>
-                <p className="text-muted-foreground">Adventurer</p>
+                <h3 className="text-lg sm:text-xl font-bold">{user.name}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base">Adventurer</p>
               </div>
             </div>
             <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-semibold">Rank: {user.rank}</span>
-                <span className="font-semibold">XP: {user.xp.toLocaleString()} / {user.xpNextLevel.toLocaleString()}</span>
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-1 sm:gap-0">
+                <span className="font-semibold text-sm sm:text-base">Rank: {user.rank}</span>
+                <span className="font-semibold text-sm sm:text-base">XP: {user.xp.toLocaleString()} / {user.xpNextLevel.toLocaleString()}</span>
               </div>
               <Progress value={(user.xp / user.xpNextLevel) * 100} className="w-full" />
             </div>
@@ -112,7 +112,7 @@ function UserDashboard() {
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   // Added filtering & search state
   const [searchTerm, setSearchTerm] = useState('');
   const [rankFilter, setRankFilter] = useState('all');
@@ -120,27 +120,27 @@ export default function HomePage() {
   // Filtered Quests
   const filteredQuests = useMemo(() => {
     return quests
-      .filter(quest => 
+      .filter(quest =>
         quest.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         quest.description.toLowerCase().includes(searchTerm.toLowerCase())
       )
-      .filter(quest => 
+      .filter(quest =>
         rankFilter === 'all' || quest.rank === rankFilter
       );
   }, [searchTerm, rankFilter]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <nav className="sticky top-0 w-full z-50 bg-background/30 backdrop-blur-xl border-b border-border/30 transition-all duration-300">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Image src="/images/guild-logo.png" alt="The Adventurers Guild" width={40} height={40} className="w-10 h-10" />
-            <span className="text-xl font-bold text-foreground">The Adventurers Guild</span>
+      <nav className="sticky top-0 w-full z-50 bg-background/95 backdrop-blur-xl border-b border-border/30 transition-all duration-300">
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <Image src="/images/guild-logo.png" alt="The Adventurers Guild" width={32} height={32} className="w-8 h-8 sm:w-10 sm:h-10" />
+            <span className="text-lg sm:text-xl font-bold text-foreground">The Adventurers Guild</span>
           </div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="#quests" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Quest Board</Link>
-            <Link href="#profile" className="text-muted-foreground hover:text-foreground transition-colors font-medium">Profile</Link>
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8">
+            <Link href="#quests" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-sm xl:text-base">Quest Board</Link>
+            <Link href="#profile" className="text-muted-foreground hover:text-foreground transition-colors font-medium text-sm xl:text-base">Profile</Link>
             <ThemeToggle />
             <Avatar>
               <AvatarImage src={user.avatar} />
@@ -148,16 +148,31 @@ export default function HomePage() {
             </Avatar>
           </div>
 
-          <button className="md:hidden" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center space-x-2 lg:hidden">
+            <ThemeToggle />
+            <button className="p-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden bg-background border-t border-border">
-            <div className="px-6 py-4 space-y-4">
-              <Link href="#quests" className="block text-muted-foreground hover:text-foreground font-medium" onClick={() => setMobileMenuOpen(false)}>Quest Board</Link>
-              <Link href="#profile" className="block text-muted-foreground hover:text-foreground font-medium" onClick={() => setMobileMenuOpen(false)}>Profile</Link>
+          <div className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border">
+            <div className="px-4 sm:px-6 py-4 space-y-4">
+              <Link
+                href="#quests"
+                className="block text-muted-foreground hover:text-foreground font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Quest Board
+              </Link>
+              <Link
+                href="#profile"
+                className="block text-muted-foreground hover:text-foreground font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Profile
+              </Link>
               <div className="flex justify-between items-center">
                 <ThemeToggle />
                 <Avatar>
@@ -173,14 +188,14 @@ export default function HomePage() {
       <main>
         <UserDashboard />
 
-        {/* THIS IS THE ADDED SEARCH & FILTER SECTION */}
+        {/* Search and Filter Section */}
         <section className="px-6 py-8 max-w-6xl mx-auto">
           <AdventureSearch query={searchTerm} setQuery={setSearchTerm} />
-          <AdventureFilter 
-            filter={{ difficulty: rankFilter, category: '' }} 
-            setFilter={({ difficulty }) => setRankFilter(difficulty || 'all')} 
-            categories={[]} 
-            difficulties={['all','S','A','B','C','D']} 
+          <AdventureFilter
+            filter={{ difficulty: rankFilter, category: '' }}
+            setFilter={({ difficulty }) => setRankFilter(difficulty || 'all')}
+            categories={[]}
+            difficulties={['all', 'S', 'A', 'B', 'C', 'D']}
           />
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
@@ -239,3 +254,4 @@ function AppFooter() {
     </footer>
   );
 }
+
